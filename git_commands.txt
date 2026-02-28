@@ -1,0 +1,69 @@
+═══════════════════════════════════════════════════════════
+  MANUAL GIT COMMANDS - Copy and paste these one by one
+═══════════════════════════════════════════════════════════
+
+IMPORTANT: Close your current terminal and open a NEW one first!
+Then navigate to your project folder:
+cd C:\Users\DELL\Desktop\Crypto
+
+───────────────────────────────────────────────────────────
+Step 1: Configure Git (replace with your email)
+───────────────────────────────────────────────────────────
+
+git config --global user.name "saad-malik48"
+git config --global user.email "your-email@example.com"
+
+───────────────────────────────────────────────────────────
+Step 2: Initialize Git repository
+───────────────────────────────────────────────────────────
+
+git init
+
+───────────────────────────────────────────────────────────
+Step 3: Add all files
+───────────────────────────────────────────────────────────
+
+git add .
+
+───────────────────────────────────────────────────────────
+Step 4: Create first commit
+───────────────────────────────────────────────────────────
+
+git commit -m "Initial commit: CRYPTEX Real-Time Crypto Analytics Platform"
+
+───────────────────────────────────────────────────────────
+Step 5: Connect to your GitHub repository
+───────────────────────────────────────────────────────────
+
+git remote add origin https://github.com/saad-malik48/Crypto-SMIT-Hackathon.git
+
+───────────────────────────────────────────────────────────
+Step 6: Set branch to main
+───────────────────────────────────────────────────────────
+
+git branch -M main
+
+───────────────────────────────────────────────────────────
+Step 7: Push to GitHub
+───────────────────────────────────────────────────────────
+
+git push -u origin main
+
+When prompted:
+  Username: saad-malik48
+  Password: [Use Personal Access Token from https://github.com/settings/tokens]
+
+═══════════════════════════════════════════════════════════
+  ALL COMMANDS IN ONE BLOCK (for easy copy-paste)
+═══════════════════════════════════════════════════════════
+
+git config --global user.name "saad-malik48"
+git config --global user.email "your-email@example.com"
+git init
+git add .
+git commit -m "Initial commit: CRYPTEX Real-Time Crypto Analytics Platform"
+git remote add origin https://github.com/saad-malik48/Crypto-SMIT-Hackathon.git
+git branch -M main
+git push -u origin main
+
+═══════════════════════════════════════════════════════════

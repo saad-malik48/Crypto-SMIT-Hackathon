@@ -1,0 +1,119 @@
+╔══════════════════════════════════════════════════════════╗
+║   CRYPTEX - Local Dashboard Access Information          ║
+╚══════════════════════════════════════════════════════════╝
+
+🌐 YOUR DASHBOARD IS RUNNING!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📍 LOCAL ACCESS URLS:
+
+   Primary URL:  http://localhost:8501
+   Network URL:  http://10.13.184.100:8501
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔗 HOW TO ACCESS:
+
+1. Open your web browser (Chrome, Firefox, Edge, etc.)
+2. Copy and paste this URL: http://localhost:8501
+3. Press Enter
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📱 SHARE ON YOUR LOCAL NETWORK:
+
+If you want to show the dashboard to someone on the same WiFi:
+   Share this URL: http://10.13.184.100:8501
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📸 TAKING SCREENSHOTS FOR LINKEDIN:
+
+1. Open http://localhost:8501 in your browser
+2. Wait for all data to load (charts, KPIs, tables)
+3. Take a screenshot:
+   - Windows: Win + Shift + S (Snipping Tool)
+   - Or: Press PrtScn button
+4. Save the screenshot as "dashboard_screenshot.png"
+5. Use it in your LinkedIn post!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🛑 STOPPING THE DASHBOARD:
+
+To stop the dashboard server:
+   - Go to the terminal/command prompt where it's running
+   - Press Ctrl + C
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🔄 RESTARTING THE DASHBOARD:
+
+If you closed it and want to restart:
+   streamlit run dashboard.py
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✨ WHAT YOU'LL SEE:
+
+Your dashboard includes:
+   ✓ Real-time crypto market data (20 coins)
+   ✓ KPI cards (Total Market Cap, Highest Gainer, etc.)
+   ✓ Interactive charts (Market Cap, Price Changes, Volume)
+   ✓ Volatility rankings
+   ✓ Price history graphs
+   ✓ Full market data table
+   ✓ Anomaly detection alerts
+   ✓ Auto-refresh every 60 seconds
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 NEXT STEPS - SHARE YOUR PROJECT:
+
+1. Take screenshots of your dashboard
+2. Follow the guide in START_HERE.md
+3. Push to GitHub using setup_github.bat
+4. Deploy to Streamlit Cloud (free hosting)
+5. Share on LinkedIn with your live URL
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📚 HELPFUL FILES:
+
+   • START_HERE.md - Complete deployment guide
+   • QUICK_START.md - 3-step deployment (10 minutes)
+   • GITHUB_SETUP.md - GitHub & LinkedIn templates
+   • PRESENTATION_TIPS.md - Screenshot & video tips
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🆘 TROUBLESHOOTING:
+
+Problem: "This site can't be reached"
+Solution: Make sure the dashboard is still running in your terminal
+
+Problem: No data showing
+Solution: Run the ETL first: python etl_pipeline.py --once
+
+Problem: Port already in use
+Solution: Use a different port: streamlit run dashboard.py --server.port=8502
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+💡 PRO TIP:
+
+Open the dashboard in "Incognito/Private" mode for cleaner screenshots
+(no bookmarks bar, extensions, or personal info visible)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎉 ENJOY YOUR DASHBOARD!
+
+Your CRYPTEX Analytics Platform is running and ready to share!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Questions? Check the documentation files or open START_HERE.md
+
+Built with ❤️ using Python, Streamlit, and PostgreSQL

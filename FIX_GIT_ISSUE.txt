@@ -1,0 +1,98 @@
+╔══════════════════════════════════════════════════════════╗
+║   FIX: Git Not Recognized Error                          ║
+╚══════════════════════════════════════════════════════════╝
+
+ERROR: "git is not recognized as the name of a cmdlet..."
+
+This happens because you installed Git but your current terminal 
+session doesn't know about it yet.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SOLUTION: Restart Your Terminal
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Follow these steps EXACTLY:
+
+1. ❌ CLOSE this terminal/PowerShell window completely
+   (Click the X button or type: exit)
+
+2. ✅ OPEN a NEW terminal/PowerShell window
+   - Press Windows key
+   - Type "PowerShell" or "cmd"
+   - Press Enter
+
+3. 📂 Navigate to your project folder:
+   cd C:\Users\DELL\Desktop\Crypto
+
+4. ✅ Test if Git works:
+   git --version
+
+   You should see something like: "git version 2.x.x"
+
+5. 🚀 Run the push script:
+   push_to_github.bat
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ALTERNATIVE: If Git Still Doesn't Work
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Option 1: Restart Your Computer
+   - Sometimes Windows needs a full restart to recognize Git
+   - After restart, open terminal and try again
+
+Option 2: Use Git Bash (Installed with Git)
+   - Press Windows key
+   - Type "Git Bash"
+   - Press Enter
+   - Navigate: cd /c/Users/DELL/Desktop/Crypto
+   - Run: bash push_to_github.bat
+
+Option 3: Use GitHub Desktop (Much Easier!)
+   - Download: https://desktop.github.com/
+   - Install and sign in
+   - File → Add Local Repository
+   - Select: C:\Users\DELL\Desktop\Crypto
+   - Click "Publish repository"
+   - Choose: Crypto-SMIT-Hackathon
+   - Done!
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+MANUAL COMMANDS (After Restarting Terminal)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+If the script doesn't work, copy these commands one by one:
+
+git config --global user.name "saad-malik48"
+git config --global user.email "your-email@example.com"
+git init
+git add .
+git commit -m "Initial commit: CRYPTEX Real-Time Crypto Analytics Platform"
+git remote add origin https://github.com/saad-malik48/Crypto-SMIT-Hackathon.git
+git branch -M main
+git push -u origin main
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CHECKLIST
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Before running commands:
+[ ] Git is installed (you already did this)
+[ ] Terminal is CLOSED and REOPENED (NEW session)
+[ ] You're in the project folder (cd C:\Users\DELL\Desktop\Crypto)
+[ ] Git works (git --version shows version number)
+
+Ready to push:
+[ ] Run: push_to_github.bat
+[ ] Enter your email when asked
+[ ] Use Personal Access Token when pushing
+[ ] Visit: https://github.com/saad-malik48/Crypto-SMIT-Hackathon
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+REMEMBER: The key is to CLOSE and REOPEN your terminal!
+
+Good luck! 🚀

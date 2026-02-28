@@ -1,0 +1,95 @@
+version: "3.9"
+
+services:
+  # ── PostgreSQL ──────────────────────────────────────────────────────────
+  postgres:
+    image: postgres:15-alpine
+    container_name: crypto_postgres
+    environment:
+      POSTGRES_DB:       crypto_analytics
+      POSTGRES_USER:     postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── Redis ────────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: crypto_redis
+    ports:
+      - "6379:6379"
+    command: redis-server --save 60 1 --loglevel warning
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      retries: 3
+
+  # ── ETL Pipeline ─────────────────────────────────────────────────────────
+  etl:
+    build: .
+    container_name: crypto_etl
+    command: python etl_pipeline.py
+    environment:
+      DB_HOST:     postgres
+      DB_PORT:     5432
+      DB_NAME:     crypto_analytics
+      DB_USER:     postgres
+      DB_PASSWORD: postgres
+      REDIS_HOST:  redis
+      REDIS_PORT:  6379
+      ETL_INTERVAL_MINUTES: 5
+    volumes:
+      - ./logs:/app/logs
+      - ./raw_data:/app/raw_data
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ── Streamlit Dashboard ───────────────────────────────────────────────────
+  dashboard:
+    build: .
+    container_name: crypto_dashboard
+    command: streamlit run dashboard.py --server.port=8501 --server.address=0.0.0.0
+    environment:
+      DB_HOST:     postgres
+      DB_PASSWORD: postgres
+      REDIS_HOST:  redis
+    ports:
+      - "8501:8501"
+    depends_on:
+      - postgres
+      - redis
+      - etl
+    restart: unless-stopped
+
+  # ── FastAPI REST API ──────────────────────────────────────────────────────
+  api:
+    build: .
+    container_name: crypto_api
+    command: python api.py
+    environment:
+      DB_HOST:     postgres
+      DB_PASSWORD: postgres
+      REDIS_HOST:  redis
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  redisdata:
