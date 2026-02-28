@@ -15,6 +15,17 @@
 
 A production-ready cryptocurrency analytics platform featuring real-time data ingestion, transformation, and visualization with anomaly detection.
 
+## ✨ Features
+
+- 🏠 **Home Page** - Overview dashboard with search functionality
+- 📈 **Charts Page** - Interactive visualizations and analytics
+- 💹 **Market Page** - Complete market data with filtering and export
+- 🔍 **Search Bar** - Quick cryptocurrency lookup
+- 📊 **Real-time KPIs** - Market cap, top gainers, volatility metrics
+- 🚨 **Anomaly Detection** - Statistical analysis with Z-score alerts
+- 📉 **Price History** - Historical price tracking and trends
+- 💾 **Data Export** - Download market data as CSV or JSON
+
 ## Architecture
 
 ```
