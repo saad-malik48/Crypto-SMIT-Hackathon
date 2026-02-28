@@ -55,6 +55,28 @@ from analysis import (
 from load import get_row_count
 from config import DASHBOARD_REFRESH_SECONDS, ZSCORE_THRESHOLD
 
+# ── Auto-run ETL on first load ───────────────────────────────────────────────
+@st.cache_resource
+def initialize_data():
+    """Run ETL pipeline once on app startup if no data exists"""
+    try:
+        row_count = get_row_count()
+        if row_count == 0:
+            st.info("🔄 First time setup: Fetching crypto data from CoinGecko API...")
+            from etl_pipeline import run_etl_once
+            success = run_etl_once()
+            if success:
+                st.success("✅ Data loaded successfully!")
+                time.sleep(2)
+            else:
+                st.warning("⚠️ ETL failed, but app will continue with empty data")
+    except Exception as e:
+        logger.warning(f"Could not initialize data: {e}")
+        pass
+
+# Initialize data on first load
+initialize_data()
+
 
 # ══════════════════════════════════════════════════════════════════════════════
 #  Theme constants

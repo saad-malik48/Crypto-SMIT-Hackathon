@@ -268,3 +268,16 @@ if __name__ == "__main__":
         sys.exit(0 if result.success else 1)
     else:
         start(interval_minutes=args.interval)
+
+
+# ══════════════════════════════════════════════════════════════════════════════
+#  Helper for dashboard initialization
+# ══════════════════════════════════════════════════════════════════════════════
+
+def run_etl_once() -> bool:
+    """
+    Simple wrapper for dashboard to run ETL once and return success status.
+    Returns True if successful, False otherwise.
+    """
+    result = run_once()
+    return result.success
