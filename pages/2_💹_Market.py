@@ -1,7 +1,4 @@
-"""
-Market.py — Full Market Data Table
-Complete market overview with filtering and sorting
-"""
+"""CRYPTEX Market Page - Full market data with filtering and export"""
 
 import streamlit as st
 import pandas as pd
@@ -16,7 +13,7 @@ st.set_page_config(
 from analysis import get_market_df, detect_anomalies
 from load import get_row_count
 
-# ── Custom CSS ────────────────────────────────────────────────────────────────
+# Custom CSS
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap');
@@ -25,7 +22,7 @@ html, body, [class*="css"] { font-family: 'Syne', sans-serif !important; }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Header ────────────────────────────────────────────────────────────────────
+# Header
 st.title("💹 Market Data")
 st.markdown("Complete cryptocurrency market overview")
 
@@ -40,7 +37,7 @@ with col3:
 
 st.markdown("---")
 
-# ── Load data ─────────────────────────────────────────────────────────────────
+# Load data with caching
 @st.cache_data(ttl=55)
 def load_market_df():
     try:
@@ -55,7 +52,7 @@ def load_anomalies():
 market_df = load_market_df()
 anomalies = load_anomalies()
 
-# ── Sidebar Filters ───────────────────────────────────────────────────────────
+# Sidebar Filters
 with st.sidebar:
     st.markdown("### 🔍 Filters")
     
@@ -90,7 +87,7 @@ with st.sidebar:
     st.markdown("---")
     st.markdown(f"**Total Records:** {get_row_count():,}")
 
-# ── Anomaly Alert ─────────────────────────────────────────────────────────────
+# Anomaly Alert
 if anomalies:
     st.warning(f"⚠️ **{len(anomalies)} Anomalies Detected**")
     
@@ -100,7 +97,7 @@ if anomalies:
 
 st.markdown("---")
 
-# ── Market Stats ──────────────────────────────────────────────────────────────
+# Market Stats
 if not market_df.empty:
     col1, col2, col3, col4 = st.columns(4)
     
@@ -121,7 +118,7 @@ if not market_df.empty:
 
 st.markdown("---")
 
-# ── Filter Data ───────────────────────────────────────────────────────────────
+# Filter Data
 if not market_df.empty:
     filtered_df = market_df.copy()
     
@@ -157,7 +154,7 @@ if not market_df.empty:
     ascending = (sort_order == "Ascending")
     filtered_df = filtered_df.sort_values(sort_col, ascending=ascending)
     
-    # ── Display Table ─────────────────────────────────────────────────────────
+    # Display Table
     st.markdown(f"### 📊 Market Table ({len(filtered_df)} coins)")
     
     # Format for display
@@ -211,7 +208,7 @@ if not market_df.empty:
         height=600
     )
     
-    # ── Export Options ────────────────────────────────────────────────────────
+    # Export Options
     st.markdown("### 📥 Export Data")
     
     col1, col2 = st.columns(2)
@@ -237,7 +234,7 @@ if not market_df.empty:
 else:
     st.info("No market data available. Run the ETL pipeline first.")
 
-# ── Footer ────────────────────────────────────────────────────────────────────
+# Footer
 st.markdown("---")
 st.markdown(
     f"<div style='text-align:center;font-family:monospace;font-size:10px;color:#8b949e'>"

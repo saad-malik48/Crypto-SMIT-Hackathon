@@ -1,13 +1,9 @@
-"""
-Home.py — CRYPTEX Home Page
-Main landing page with overview and search functionality
-"""
+"""CRYPTEX Home Page - Main landing page with search functionality"""
 
 import streamlit as st
 import pandas as pd
 from datetime import datetime, timezone
 
-# ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
     page_title="CRYPTEX - Home",
     page_icon="₿",
@@ -15,7 +11,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-# ── Auto-run ETL on first load ───────────────────────────────────────────────
+# Auto-run ETL on first load
 @st.cache_resource
 def initialize_data():
     """Run ETL pipeline once on app startup if no data exists"""
@@ -38,7 +34,7 @@ initialize_data()
 from analysis import kpi_summary, get_market_df, top_gainers
 from load import get_row_count
 
-# ── Custom CSS ────────────────────────────────────────────────────────────────
+# Custom CSS
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap');
@@ -113,7 +109,7 @@ html, body, [class*="css"] {
 </style>
 """, unsafe_allow_html=True)
 
-# ── Header ────────────────────────────────────────────────────────────────────
+# Header
 st.markdown("""
 <div class="hero-section">
     <div class="hero-title">₿ CRYPTEX</div>
@@ -123,7 +119,7 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
-# ── Navigation Buttons ────────────────────────────────────────────────────────
+# Navigation Buttons
 col1, col2, col3 = st.columns(3)
 with col1:
     st.page_link("Home.py", label="🏠 Home", use_container_width=True)
@@ -134,7 +130,7 @@ with col3:
 
 st.markdown("---")
 
-# ── Search Bar ────────────────────────────────────────────────────────────────
+# Search Bar
 st.markdown("### 🔍 Search Cryptocurrency")
 search_query = st.text_input(
     "Search by name or symbol",
@@ -142,7 +138,7 @@ search_query = st.text_input(
     label_visibility="collapsed"
 )
 
-# ── Load data ─────────────────────────────────────────────────────────────────
+# Load data with caching
 @st.cache_data(ttl=55)
 def load_kpis():
     return kpi_summary()
@@ -162,7 +158,7 @@ kpis = load_kpis()
 market_df = load_market_df()
 gainers = load_gainers()
 
-# ── Search Results ────────────────────────────────────────────────────────────
+# Search Results
 if search_query and not market_df.empty:
     filtered_df = market_df[
         market_df['name'].str.contains(search_query, case=False, na=False) |
@@ -189,7 +185,7 @@ if search_query and not market_df.empty:
     else:
         st.info(f"No results found for '{search_query}'")
 
-# ── KPI Cards ─────────────────────────────────────────────────────────────────
+# KPI Cards
 st.markdown("### 📊 Market Overview")
 
 k1, k2, k3, k4 = st.columns(4)
@@ -233,7 +229,7 @@ with k4:
 
 st.markdown("")
 
-# ── Top Gainers ───────────────────────────────────────────────────────────────
+# Top Gainers
 st.markdown("### 🚀 Top Gainers (24H)")
 
 if gainers:
@@ -246,7 +242,7 @@ if gainers:
                 f"{coin['price_change_24h']:+.2f}%"
             )
 
-# ── Quick Stats ───────────────────────────────────────────────────────────────
+# Quick Stats
 st.markdown("### 📈 Quick Stats")
 
 col1, col2 = st.columns(2)
@@ -265,7 +261,7 @@ with col2:
         for _, row in top5_vol.iterrows():
             st.write(f"• **{row['name']}** ({row['symbol'].upper()}) - ${row['total_volume']/1e9:.2f}B")
 
-# ── Footer ────────────────────────────────────────────────────────────────────
+# Footer
 st.markdown("---")
 st.markdown(
     f"<div style='text-align:center;font-family:monospace;font-size:10px;color:#8b949e'>"

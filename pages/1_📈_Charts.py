@@ -1,7 +1,4 @@
-"""
-Charts.py — Interactive Charts Page
-Detailed visualizations and analytics
-"""
+"""CRYPTEX Charts Page - Interactive visualizations and analytics"""
 
 import streamlit as st
 import pandas as pd
@@ -20,7 +17,7 @@ from analysis import (
 )
 from config import ZSCORE_THRESHOLD
 
-# ── Custom CSS ────────────────────────────────────────────────────────────────
+# Custom CSS
 st.markdown("""
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap');
@@ -29,7 +26,7 @@ html, body, [class*="css"] { font-family: 'Syne', sans-serif !important; }
 </style>
 """, unsafe_allow_html=True)
 
-# ── Header ────────────────────────────────────────────────────────────────────
+# Header
 st.title("📈 Interactive Charts")
 st.markdown("Explore detailed market visualizations and trends")
 
@@ -44,7 +41,7 @@ with col3:
 
 st.markdown("---")
 
-# ── Load data ─────────────────────────────────────────────────────────────────
+# Load data with caching
 @st.cache_data(ttl=55)
 def load_market_df():
     try:
@@ -73,7 +70,7 @@ vol_data = load_volume()
 volatility_data = load_volatility()
 anomalies = load_anomalies()
 
-# ── Sidebar Filters ───────────────────────────────────────────────────────────
+# Sidebar Filters
 with st.sidebar:
     st.markdown("### 🎛️ Chart Controls")
     
@@ -91,7 +88,7 @@ with st.sidebar:
         1.0, 5.0, ZSCORE_THRESHOLD, 0.1
     )
 
-# ── Anomaly Alert ─────────────────────────────────────────────────────────────
+# Anomaly Alert
 if anomalies:
     st.warning(f"⚠️ **{len(anomalies)} Anomalies Detected** | Z-score ≥ {z_threshold}")
     
@@ -106,7 +103,7 @@ if anomalies:
 
 st.markdown("---")
 
-# ── Market Cap Chart ──────────────────────────────────────────────────────────
+# Market Cap Chart
 st.markdown("### 💰 Market Capitalization")
 
 if not market_df.empty:
@@ -149,7 +146,7 @@ if not market_df.empty:
     
     st.plotly_chart(fig, use_container_width=True)
 
-# ── Price Change Chart ────────────────────────────────────────────────────────
+# Price Change Chart
 st.markdown("### 📊 24H Price Changes")
 
 if not market_df.empty:
@@ -176,7 +173,7 @@ if not market_df.empty:
     
     st.plotly_chart(fig2, use_container_width=True)
 
-# ── Volume & Volatility ───────────────────────────────────────────────────────
+# Volume & Volatility
 col1, col2 = st.columns(2)
 
 with col1:
@@ -229,7 +226,7 @@ with col2:
         
         st.plotly_chart(fig4, use_container_width=True)
 
-# ── Price History ─────────────────────────────────────────────────────────────
+# Price History
 st.markdown("### 📉 Price History")
 
 if not market_df.empty and "coin_id" in market_df.columns:
@@ -269,7 +266,7 @@ if hist:
 else:
     st.info(f"No history available for '{selected_coin}' yet")
 
-# ── Footer ────────────────────────────────────────────────────────────────────
+# Footer
 st.markdown("---")
 st.markdown(
     f"<div style='text-align:center;font-family:monospace;font-size:10px;color:#8b949e'>"
