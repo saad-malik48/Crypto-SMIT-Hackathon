@@ -148,10 +148,20 @@ pytest tests/ -v --tb=short --cov=. --cov-report=term-missing
 
 ## 🚀 Deployment
 
-Ready to share your dashboard? Check out these deployment options:
+**⚠️ Important:** This is a Python Streamlit app. It will NOT work on Vercel or Netlify (they're for static sites only).
 
-- **[Streamlit Cloud](streamlit_cloud.md)** - FREE, 2-minute deploy
-- **[Full Deployment Guide](DEPLOYMENT.md)** - Heroku, Railway, Render, Docker
+**✅ Recommended Platform: Streamlit Cloud (FREE)**
+
+Deploy in 2 minutes:
+1. Go to https://share.streamlit.io/
+2. Sign in with GitHub
+3. Deploy `dashboard.py` from this repo
+4. Done! Get your live URL
+
+**Other Options:**
+- **[Streamlit Cloud Guide](DEPLOY_STREAMLIT_CLOUD.md)** - Step-by-step (FREE)
+- **[Why Not Vercel/Netlify?](VERCEL_NETLIFY_ISSUE.md)** - Platform compatibility explained
+- **[Alternative Platforms](DEPLOYMENT.md)** - Render, Railway, Heroku, Docker
 
 ## 📸 Screenshots
 
