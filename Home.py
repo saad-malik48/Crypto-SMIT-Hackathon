@@ -123,6 +123,17 @@ st.markdown("""
 </div>
 """, unsafe_allow_html=True)
 
+# ── Navigation Buttons ────────────────────────────────────────────────────────
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.page_link("Home.py", label="🏠 Home", use_container_width=True)
+with col2:
+    st.page_link("pages/1_📈_Charts.py", label="📈 Charts", use_container_width=True)
+with col3:
+    st.page_link("pages/2_💹_Market.py", label="💹 Market", use_container_width=True)
+
+st.markdown("---")
+
 # ── Search Bar ────────────────────────────────────────────────────────────────
 st.markdown("### 🔍 Search Cryptocurrency")
 search_query = st.text_input(

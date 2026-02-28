@@ -29,6 +29,17 @@ html, body, [class*="css"] { font-family: 'Syne', sans-serif !important; }
 st.title("💹 Market Data")
 st.markdown("Complete cryptocurrency market overview")
 
+# ── Navigation Buttons ────────────────────────────────────────────────────────
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.page_link("Home.py", label="🏠 Home", use_container_width=True)
+with col2:
+    st.page_link("pages/1_📈_Charts.py", label="📈 Charts", use_container_width=True)
+with col3:
+    st.page_link("pages/2_💹_Market.py", label="💹 Market", use_container_width=True)
+
+st.markdown("---")
+
 # ── Load data ─────────────────────────────────────────────────────────────────
 @st.cache_data(ttl=55)
 def load_market_df():
